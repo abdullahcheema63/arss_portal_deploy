@@ -11,7 +11,8 @@
         "jeroennoten/laravel-adminlte": "^1.23",
         "kris/laravel-form-builder": "^1.15",
         "laravel/framework": "5.6.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "ext-pdo_sqlite": "*"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
