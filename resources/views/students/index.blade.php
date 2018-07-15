@@ -11,12 +11,7 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-create">
-                            <i class=" fa fa-plus"></i>
-                            Create
-                        </button>
-                    </div>
+
                     <div class="form-inline ">
                         <div class="form-group">
                             <label for="classroom">Classroom:</label>
@@ -33,6 +28,13 @@
                             </button>
                         </div>
                     </div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-create">
+                            <i class=" fa fa-plus"></i>
+                            Create
+                        </button>
+                    </div>
+
                 </div>
                 <div class="box-body">
                     <div class="table-responsive">
