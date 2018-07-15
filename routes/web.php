@@ -21,8 +21,14 @@ Auth::routes();
 
 Route::middleware("auth")->group(function (){
     Route::get('/home', 'HomeController@index')->name('home');
+
     Route::resource('/classrooms',"ClassroomController");
+
+
     Route::resource('/students',"StudentController");
+    Route::post("/students/import","StudentController@import")->name('students.import');
+
+
     Route::get("/pending-sms",function (){
        $smss=\App\SMS::where("status","pending")->get();
        $value="Pending";

@@ -11,14 +11,32 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-create">
-                        <i class=" fa fa-plus"></i>
-                        Create
-                    </button>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-create">
+                            <i class=" fa fa-plus"></i>
+                            Create
+                        </button>
+                    </div>
+                    <div class="form-inline ">
+                        <div class="form-group">
+                            <label for="classroom">Classroom:</label>
+                            <select name="classroom_id" class="form-control" id="import_classroom_select_id">
+                                @foreach($classrooms as $classroom)
+                                    <option value="{{$classroom->id}}">{{$classroom->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-import">
+                                <i class=" fa fa-upload"></i>
+                                Import
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="box-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover" id="classrooms_table">
+                        <table class="table table-bordered table-hover" id="students_table">
                             <thead>
                             <tr>
                                 <th>Name</th>
@@ -87,7 +105,7 @@
                             <label for="classroom">Classroom:</label>
                             <select name="classroom_id" class="form-control">
                                 @foreach($classrooms as $classroom)
-                                    <option value="{{$classroom->id}}">{{$classroom->name}}</option>
+                                    <option value="{{$classroom->id}}" data-id="{{$classroom->id}}">{{$classroom->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -95,6 +113,27 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                         <input type="submit" class="btn btn-primary">
+                    </div>
+                </div>
+            </form>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="modal-import" style="display: none;">
+        <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">Import Students</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{route('students.import')}}" class="dropzone" id="students-import-dropzone">
+                            {{csrf_field()}}
+                            <input type="hidden" name="classroom_id" id="import_classroom_id">
+                        </form>
                     </div>
                 </div>
             </form>
@@ -198,8 +237,12 @@
                 }
             });
         }
-
-
+        $(document).ready(function () {
+            $("#modal-import").on('show.bs.modal',function () {
+                $("#import_classroom_id").val($("#import_classroom_select_id option:selected").val())
+            })
+            $("#students_table").DataTable();
+        })
 
     </script>
 @endpush

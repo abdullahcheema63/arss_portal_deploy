@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Classroom;
 use App\Student;
 use Illuminate\Http\Request;
+use function PHPSTORM_META\type;
 
 class StudentController extends Controller
 {
@@ -107,4 +108,31 @@ class StudentController extends Controller
         Student::find($id)->delete();
         return response("deleted",200);
     }
+
+    public function import(Request $request){
+//        return $request->all();
+        $file_request=$request->file;
+        $filename=$file_request->getPathName();
+//        $file=fopen($file_path,"r");
+        $data = array();
+        $header = null;
+
+        if (($handle = fopen($filename, 'r')) !== false)
+        {
+            while (($row = fgetcsv($handle)) !== false)
+            {
+                if (!$header)
+                    $header = $row;
+                else
+
+                    $data[] = array('name'=>$row[0],'father_name'=>$row[1],"address"=>$row[2],'phone_number'=>$row[3],"classroom_id"=>$request->classroom_id);
+            }
+            fclose($handle);
+        }
+
+//        return $data;
+        Student::insert($data);
+        return response("uploaded",200);
+    }
+
 }
