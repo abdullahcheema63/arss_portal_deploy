@@ -8,37 +8,43 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 no-padding">
             <div class="box">
                 <div class="box-header">
 
                     <div class="form-inline ">
-                        <div class="form-group">
-                            <label for="classroom">Classroom:</label>
-                            <select name="classroom_id" class="form-control" id="import_classroom_select_id">
-                                @foreach($classrooms as $classroom)
-                                    <option value="{{$classroom->id}}">{{$classroom->name}}</option>
-                                @endforeach
-                            </select>
+                        <div class="pull-left">
+                            <div class="form-group">
+                                <label for="classroom">Classroom:</label>
+                                <select name="classroom_id" class="form-control" id="import_classroom_select_id">
+                                    @foreach($classrooms as $classroom)
+                                        <option value="{{$classroom->id}}">{{$classroom->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-import">
+                                    <i class=" fa fa-upload"></i>
+                                    Import
+                                </button>
+                            </div>
+
                         </div>
-                        <div class="form-group">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-import">
-                                <i class=" fa fa-upload"></i>
-                                Import
-                            </button>
+                        <div class="pull-right">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-create">
+                                    <i class=" fa fa-plus"></i>
+                                    Create
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-create">
-                            <i class=" fa fa-plus"></i>
-                            Create
-                        </button>
-                    </div>
+
 
                 </div>
                 <div class="box-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover" id="students_table">
+                        <table class="table table-bordered table-hover table-condensed" id="students_table">
                             <thead>
                             <tr>
                                 <th>Name</th>

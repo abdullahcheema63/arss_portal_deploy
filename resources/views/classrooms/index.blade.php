@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 no-padding">
             <div class="box">
                 <div class="box-header">
                     <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-create">
